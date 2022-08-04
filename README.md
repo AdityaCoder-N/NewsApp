@@ -3,10 +3,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 <p align="center">
-    ![apple-touch-icon](https://user-images.githubusercontent.com/91337266/182782724-811c7773-eb99-4876-8444-2b0a124518e5.png)
-  NewsTurtle is a news Application which uses NewsApi to fetch real time news category-wise
+    
+  ![apple-touch-icon](https://user-images.githubusercontent.com/91337266/182783365-08a4cdaf-7acd-43a3-9cac-2cad3ec7e405.png)
+
+</p>
+<p align="center">
+    
+   NewsTurtle is a news Application which uses NewsApi to fetch real time news category-wise
+
 </p>
 
+   
 
  
 
