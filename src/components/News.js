@@ -4,8 +4,6 @@ import Spinner from "./Spinner.js";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
- 
-
 export class News extends Component {
   static propTypes = {
     country: PropTypes.string,
@@ -27,19 +25,24 @@ export class News extends Component {
 
   async updateNews() {
 
-    
+    // NewsApi -
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f6c3719de2034ca9ac81c0ec65a4dba4&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    
+
+    // // mediaStack news api-
+    // const url = `http://api.mediastack.com/v1/news?access_key=449bc7fa208e4e1b58b1194ed20490c7&countries=in&categories=${this.props.category}&languages=en&offset=13`
+
+
     let data = await fetch(url);
     
     let parsedData = await data.json();
     
+    console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
       totalArticles: parsedData.totalResults,
       loading: false,
     });
-    
+
   }
 
   async componentDidMount() {
@@ -66,16 +69,17 @@ export class News extends Component {
   }
 
   fetchMoreData = async() => {
+
     this.setState({page:this.state.page+1});
 
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f6c3719de2034ca9ac81c0ec65a4dba4&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
 
+    // const url = `http://api.mediastack.com/v1/news?access_key=449bc7fa208e4e1b58b1194ed20490c7&countries=in&categories=${this.props.category}&languages=en&offset=0`
+    
     let data = await fetch(url);
 
     let parsedData = await data.json();
-    
-    
-    
+    console.log(parsedData);
     this.setState({
       articles: this.state.articles.concat(parsedData.articles),
       totalArticles: parsedData.totalResults,
@@ -83,11 +87,13 @@ export class News extends Component {
     });
   };
 
+  
   render() {
     return (
       <>
         <h2 className="text-center my-5">NewsTurtle - Top {this.capitalize(this.props.category)} Headlines </h2>
 
+        
         {this.state.loading && <Spinner />} 
 
         <InfiniteScroll
@@ -107,7 +113,7 @@ export class News extends Component {
                         description={element.description ? element.description : ""}
                         imageUrl={element.urlToImage}
                         newsUrl={element.url}
-                        date={element.publishedAt}
+                        date={element.published_at}
                       />
                     </div>
                   );
@@ -124,7 +130,7 @@ export class News extends Component {
 News.defaultProps = {
   country: "in",
   pageSize: 9,
-  category: "general",
+  category: "news",
 };
 
 export default News;
