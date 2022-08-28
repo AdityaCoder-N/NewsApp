@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# NewsMonkey - Your daily doze of news
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
